@@ -1,0 +1,68 @@
+#include<iostream>
+#include<cstring>
+#include<cstdlib>
+void rules();
+using namespace std;
+int main()
+{
+    string playerName;
+    int guess;
+    int dice;
+    int balance;
+    int bettingamount;
+    char choice;
+    cout<<"\t\t\t -------------- WELCOME TO CASINO WORLD------------   \t\t\t";
+    cout<<"\n  What is your Name:    ";
+    cin>>playerName;
+    cout << "\n\nEnter the starting balance to play game : Rs";
+    cin >> balance;
+    do{
+        rules();
+        cout<<"\n\n Your current balance is Rs " << balance << "\n";
+        do{
+            cout<<"Hey , "<<playerName <<" enter the betting amount : ";
+            cin>>bettingamount;
+            if(bettingamount>balance)
+            cout << "Betting amount can't be more than current balance!\n"
+                       <<"\nRe-enter betting amount\n ";
+        }  while(bettingamount>balance);
+        do{
+             cout << "Guess any betting number between 1 & 10 :";
+            cin >> guess;
+            if(guess <= 0 || guess > 10)
+                cout << "\nNumber should be between 1 to 10\n"
+                    <<"Re-enter number:\n ";
+        } while(guess>10 || guess<=0);
+        dice=rand()%10+1;
+        if(guess == dice)
+        {
+            cout << "\n\nYou are in luck!! You have won Rs." << bettingamount * 10;
+            bettingamount=bettingamount*10;
+            balance=balance+bettingamount;
+         }
+         else
+        {
+            cout << "Oops, better luck next time !! You lost Rs "<< bettingamount <<"\n";
+            balance = balance - bettingamount;
+        }
+        cout<<"\nThe WINNING NUMBER was "<<dice;
+         cout << "\n"<<playerName<<", You have balance of Rs " << balance << "\n";
+          if(balance == 0)
+        {
+            cout << "You have no money to play ";
+            break;
+        }
+        cout<<"DO YOU WANT TO CONTINUE YES OR NO\n";
+        cin>>choice;
+    }while(choice== 'Y' || choice== 'y');
+     cout << "\n\nThanks for playing the game. Your balance is Rs " << balance << "\n\n";
+    return 0;
+}
+void rules()
+{
+    
+    cout << "\t\t======CASINO NUMBER GUESSING RULES!======\n";
+    cout << "\t1. Choose a number between 1 to 10\n";
+    cout << "\t2. Winner gets 10 times of the money bet\n";
+    cout << "\t3. Wrong bet, and you lose the amount you bet\n\n";
+}
