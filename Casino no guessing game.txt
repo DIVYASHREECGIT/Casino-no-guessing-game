@@ -52,7 +52,7 @@ int main()
             cout << "You have no money to play ";
             break;
         }
-        cout<<"DO YOU WANT TO CONTINUE YES OR NO\n";
+        cout<<"DO YOU WANT TO CONTINUE YES OR NO\nPRESS KEY 'Y' TO YES AND 'N' FOR NO";
         cin>>choice;
     }while(choice== 'Y' || choice== 'y');
      cout << "\n\nThanks for playing the game. Your balance is Rs " << balance << "\n\n";
